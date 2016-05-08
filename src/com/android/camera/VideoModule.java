@@ -856,7 +856,7 @@ public class VideoModule implements CameraModule,
             if (mCameraId == 0) {
                 defaultQuality = "3840x2160";
             } else {
-                defaultQuality = "1280x720";
+                defaultQuality = "2560x1440";
             }
 
             if (CamcorderProfile.hasProfile(
