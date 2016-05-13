@@ -2809,9 +2809,10 @@ public class PhotoModule
                             CameraSettings.KEY_AE_BRACKET_HDR,
                             mActivity.getString(R.string.pref_camera_ae_bracket_hdr_default));
         if (!shutterSpeed.equals("0") ||
-            aeBracketing.equals("AE-Bracket") ||
-            CameraUtil.SCENE_MODE_HDR.equals(mSceneMode)) {
+            aeBracketing.equals("AE-Bracket")) {
             zsl = "off";
+        } else if (CameraUtil.SCENE_MODE_HDR.equals(mSceneMode)) {
+            zsl = "on";
         }
         if(zsl.equals("on") && mSnapshotMode != CameraInfo.CAMERA_SUPPORT_MODE_ZSL
            && mCameraState != PREVIEW_STOPPED) {
@@ -3232,11 +3233,12 @@ public class PhotoModule
                 mCameraDevice.setMetadataCb(mMetaDataCallback);
             }
         }
-        // Disable ZSL for manual shutter speed and HDR
+        // Disable ZSL for manual shutter speed
         if (!shutterSpeed.equals("0") ||
-            aeBracketing.equals("AE-Bracket") ||
-            CameraUtil.SCENE_MODE_HDR.equals(mSceneMode)) {
+            aeBracketing.equals("AE-Bracket")) {
             zsl = "off";
+        } else if (CameraUtil.SCENE_MODE_HDR.equals(mSceneMode)) {
+            zsl = "on";
         }
         mParameters.setZSLMode(zsl);
         if(zsl.equals("on")) {
