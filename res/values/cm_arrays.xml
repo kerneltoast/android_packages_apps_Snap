@@ -61,25 +61,33 @@
         <item>@string/pref_camera_shutter_speed_entry_1_2</item>
         <item>@string/pref_camera_shutter_speed_entry_1</item>
         <item>@string/pref_camera_shutter_speed_entry_2</item>
+        <item>@string/pref_camera_shutter_speed_entry_4</item>
+        <item>@string/pref_camera_shutter_speed_entry_8</item>
+        <item>@string/pref_camera_shutter_speed_entry_16</item>
+        <item>@string/pref_camera_shutter_speed_entry_30</item>
     </array>
 
     <string-array name="pref_camera_shutter_speed_entryvalues" translatable="false">
         <item>0</item>
-        <item>200</item>
-        <item>400</item>
-        <item>667</item>
-        <item>1000</item>
-        <item>2000</item>
-        <item>4000</item>
-        <item>8000</item>
-        <item>16667</item>
-        <item>33333</item>
-        <item>66667</item>
-        <item>125000</item>
-        <item>250000</item>
-        <item>500000</item>
-        <item>1000000</item>
-        <item>2000000</item>
+        <item>0.200</item>
+        <item>0.400</item>
+        <item>0.667</item>
+        <item>1.000</item>
+        <item>2.000</item>
+        <item>4.000</item>
+        <item>8.000</item>
+        <item>16.667</item>
+        <item>33.333</item>
+        <item>66.667</item>
+        <item>125.000</item>
+        <item>250.000</item>
+        <item>500.000</item>
+        <item>1000.000</item>
+        <item>2000.000</item>
+        <item>4000.000</item>
+        <item>8000.000</item>
+        <item>16000.000</item>
+        <item>30231.203</item>
     </string-array>
 
     <!-- Default focus mode setting.-->
