@@ -2285,31 +2285,17 @@ public class VideoModule implements CameraModule,
             mParameters.setColorEffect(colorEffect);
         }
 
-        String disMode = mPreferences.getString(
-                CameraSettings.KEY_DIS,
-                mActivity.getString(R.string.pref_camera_dis_default));
+        String disMode;
+        if (is4KEnabled()) {
+            disMode = "disable";
+        } else {
+            disMode = "enable";
+        }
+
         Log.v(TAG, "DIS value =" + disMode);
 
-        if (is4KEnabled()) {
-            if (isSupported(mActivity.getString(R.string.pref_camera_dis_value_disable),
-                    CameraSettings.getSupportedDISModes(mParameters))) {
-                mParameters.set(CameraSettings.KEY_QC_DIS_MODE,
-                        mActivity.getString(R.string.pref_camera_dis_value_disable));
-                mUI.overrideSettings(CameraSettings.KEY_DIS,
-                        mActivity.getString(R.string.pref_camera_dis_value_disable));
-                RotateTextToast.makeText(mActivity, R.string.video_quality_4k_disable_IS,
-                        Toast.LENGTH_LONG).show();
-            } else {
-                Log.e(TAG, "Not supported IS mode = " +
-                        mActivity.getString(R.string.pref_camera_dis_value_disable));
-            }
-        } else {
-            if (isSupported(disMode,
-                    CameraSettings.getSupportedDISModes(mParameters))) {
+        if (isSupported(disMode, CameraSettings.getSupportedDISModes(mParameters))) {
                 mParameters.set(CameraSettings.KEY_QC_DIS_MODE, disMode);
-            } else {
-                Log.e(TAG, "Not supported IS mode = " + disMode);
-            }
         }
 
         // Set anti banding parameter.
