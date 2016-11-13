@@ -195,7 +195,6 @@
     <string name="pref_camera_iso_default" translatable="false">auto</string>
 
     <string name="pref_camera_iso_entry_auto">Auto</string>
-    <string name="pref_camera_iso_entry_isodeblur">Auto (HJR)</string>
     <string name="pref_camera_iso_entry_iso50">ISO50</string>
     <string name="pref_camera_iso_entry_iso100">ISO100</string>
     <string name="pref_camera_iso_entry_iso125">ISO125</string>
@@ -254,8 +253,10 @@
     <string name="pref_camera_coloreffect_entry_greentint">Green tint</string>
 
     <!-- Stabilization -->
-    <string name="pref_camera_dis_title">Stabilization</string>
+    <string name="pref_camera_dis_title">Anti-shake</string>
     <string name="pref_camera_dis_default" translatable="false">disable</string>
+
+    <string name="pref_camera_antishake_default" translatable="false">off</string>
 
     <!-- Face recognition -->
     <string name="pref_camera_facerc_title">Face recognition</string>

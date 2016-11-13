@@ -298,6 +298,16 @@
         <item>enable</item>
     </string-array>
 
+    <string-array name="pref_camera_antishake_entries" translatable="false">
+        <item>@string/setting_off</item>
+        <item>@string/setting_on</item>
+    </string-array>
+
+    <string-array name="pref_camera_antishake_entryvalues" translatable="false">
+        <item>off</item>
+        <item>on</item>
+    </string-array>
+
     <!-- Face recognition -->
     <string-array name="pref_camera_facerc_entries" translatable="false">
         <item>@string/setting_off</item>
@@ -378,7 +388,6 @@
     <!-- ISO -->
     <string-array name="pref_camera_iso_entries" translatable="false">
         <item>@string/pref_camera_iso_entry_auto</item>
-        <item>@string/pref_camera_iso_entry_isodeblur</item>
         <item>@string/pref_camera_iso_entry_iso50</item>
         <item>@string/pref_camera_iso_entry_iso100</item>
         <item>@string/pref_camera_iso_entry_iso125</item>
@@ -410,7 +419,6 @@
 
     <string-array name="pref_camera_iso_entryvalues" translatable="false">
         <item>auto</item>
-        <item>ISO_HJR</item>
         <item>ISO50</item>
         <item>ISO100</item>
         <item>ISO125</item>
