@@ -489,7 +489,7 @@ public class CameraSettings {
         if (str == null) {
             return null;
         }
-        return split(str);
+        return null;//split(str);
     }
 
     public static List<String> getSupportedVideoCDSModes(Parameters params) {
@@ -497,7 +497,7 @@ public class CameraSettings {
         if (str == null) {
             return null;
         }
-        return split(str);
+        return null;//split(str);
     }
 
     public static List<String> getSupportedTNRModes(Parameters params) {
@@ -505,7 +505,7 @@ public class CameraSettings {
         if (str == null) {
             return null;
         }
-        return split(str);
+        return null;//split(str);
     }
 
     public static List<String> getSupportedVideoTNRModes(Parameters params) {
@@ -513,7 +513,7 @@ public class CameraSettings {
         if (str == null) {
             return null;
         }
-        return split(str);
+        return null;//split(str);
     }
 
     public static List<String> getSupportedHDRModes(Parameters params) {
@@ -521,7 +521,7 @@ public class CameraSettings {
         if (str == null) {
             return null;
         }
-        return split(str);
+        return null;//split(str);
     }
 
     public static List<String> getSupportedHDRNeed1x(Parameters params) {
@@ -529,7 +529,7 @@ public class CameraSettings {
         if (str == null) {
             return null;
         }
-        return split(str);
+        return null;//split(str);
     }
 
     public List<String> getSupportedAdvancedFeatures(Parameters params) {
