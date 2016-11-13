@@ -81,7 +81,7 @@
         <item>66.667</item>
         <item>125.000</item>
         <item>250.000</item>
-        <item>500.000</item>
+        <item>422.240</item> <!-- 422.240 is the max for the front camera -->
         <item>1000.000</item>
         <item>2000.000</item>
         <item>4000.000</item>

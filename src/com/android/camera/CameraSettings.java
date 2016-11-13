@@ -666,7 +666,7 @@ public class CameraSettings {
         ListPreference autoExposure = group.findPreference(KEY_AUTOEXPOSURE);
         ListPreference antiBanding = group.findPreference(KEY_ANTIBANDING);
         ListPreference mIso = group.findPreference(KEY_ISO);
-        ListPreference mShutterSpeed = group.findPreference(KEY_SHUTTER_SPEED);
+        ListPreference shutterSpeed = group.findPreference(KEY_SHUTTER_SPEED);
         ListPreference lensShade = group.findPreference(KEY_LENSSHADING);
         ListPreference histogram = group.findPreference(KEY_HISTOGRAM);
         ListPreference denoise = group.findPreference(KEY_DENOISE);
@@ -730,7 +730,8 @@ public class CameraSettings {
 
         if (selectableZoneAf != null) {
             filterUnsupportedOptions(group,
-                    selectableZoneAf, mParameters.getSupportedSelectableZoneAf());
+                    selectableZoneAf,
+                    mCameraId == 1 ? null : mParameters.getSupportedSelectableZoneAf());
         }
 
         if (saturation != null && !CameraUtil.isSupported(mParameters, "saturation") &&
@@ -755,7 +756,8 @@ public class CameraSettings {
 
         if (redeyeReduction != null) {
             filterUnsupportedOptions(group,
-                    redeyeReduction, mParameters.getSupportedRedeyeReductionModes());
+                    redeyeReduction,
+                    mCameraId == 1 ? null : mParameters.getSupportedRedeyeReductionModes());
         }
 
         if (denoise != null) {
@@ -853,6 +855,13 @@ public class CameraSettings {
         if (manualExposure != null) {
             filterUnsupportedOptions(group,
                     manualExposure, getSupportedManualExposureModes(mParameters));
+        }
+
+        // TODO: Anything is better than this
+        if (shutterSpeed != null && mCameraId == 1) {
+            String str =
+                "0,0.200,0.400,0.667,1.000,2.000,4.000,8.000,16.667,33.333,66.667,125.000,250.000,422.240";
+            filterUnsupportedOptions(group, shutterSpeed, split(str));
         }
     }
 
