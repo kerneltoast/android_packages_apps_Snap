@@ -170,7 +170,7 @@ public class PhotoMenu extends MenuController
                 CameraSettings.KEY_JPEG_QUALITY,
                 CameraSettings.KEY_TIMER,
                 CameraSettings.KEY_CAMERA_SAVEPATH,
-                CameraSettings.KEY_LONGSHOT,
+                //CameraSettings.KEY_LONGSHOT,
                 CameraSettings.KEY_FACE_DETECTION,
                 CameraSettings.KEY_ISO,
                 CameraSettings.KEY_EXPOSURE,
@@ -181,13 +181,13 @@ public class PhotoMenu extends MenuController
                 CameraSettings.KEY_REDEYE_REDUCTION,
                 CameraSettings.KEY_POWER_SHUTTER,
                 CameraSettings.KEY_MAX_BRIGHTNESS,
-                CameraSettings.KEY_AUTO_HDR,
+                //CameraSettings.KEY_AUTO_HDR,
                 CameraSettings.KEY_HDR_MODE,
                 CameraSettings.KEY_HDR_NEED_1X,
                 CameraSettings.KEY_CDS_MODE,
                 CameraSettings.KEY_TNR_MODE,
                 CameraSettings.KEY_HISTOGRAM,
-                CameraSettings.KEY_ZSL,
+                //CameraSettings.KEY_ZSL,
                 CameraSettings.KEY_TIMER_SOUND_EFFECTS,
                 CameraSettings.KEY_FACE_RECOGNITION,
                 CameraSettings.KEY_SELECTABLE_ZONE_AF,
@@ -200,9 +200,9 @@ public class PhotoMenu extends MenuController
                 CameraSettings.KEY_DENOISE,
                 CameraSettings.KEY_ADVANCED_FEATURES,
                 //CameraSettings.KEY_AE_BRACKET_HDR,
-                CameraSettings.KEY_MANUAL_EXPOSURE,
-                CameraSettings.KEY_MANUAL_WB,
-                CameraSettings.KEY_MANUAL_FOCUS
+                //CameraSettings.KEY_MANUAL_EXPOSURE,
+                //CameraSettings.KEY_MANUAL_WB,
+                //CameraSettings.KEY_MANUAL_FOCUS
         };
 
         initSwitchItem(CameraSettings.KEY_CAMERA_ID, mFrontBackSwitcher);
