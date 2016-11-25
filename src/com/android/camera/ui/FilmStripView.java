@@ -1344,7 +1344,7 @@ public class FilmStripView extends ViewGroup implements BottomControlsListener {
                 // In full-screen and mCenterX is on the right of the center,
                 // we draw the current one translated.
                 translateLeftViewItem(mCurrentItem, fullScreenWidth, scaleFraction);
-            } else if (currItem.getView() != null) {
+            } else {
                 currItem.layoutIn(mDrawArea, mCenterX, mScale);
                 currItem.setTranslationX(0f, mScale);
                 currItem.getView().setAlpha(1f);
