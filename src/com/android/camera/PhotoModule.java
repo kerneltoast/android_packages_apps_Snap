@@ -706,6 +706,15 @@ public class PhotoModule
 
     // either open a new camera or switch cameras
     private void openCameraCommon() {
+        // Camera HAL erroneously halves auto exposure times until we set the ISO
+        // to something other than auto, so set the ISO to ISO3200 here and then
+        // back to its original value in order to make sure exposure times are
+        // correct.
+        mParameters.set("iso", "ISO3200");
+        mCameraDevice.setParameters(mParameters);
+        mParameters.set("iso", "auto");
+        mCameraDevice.setParameters(mParameters);
+
         loadCameraPreferences();
 
         mUI.onCameraOpened(mPreferenceGroup, mPreferences, mParameters, this);
