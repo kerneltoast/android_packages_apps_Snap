@@ -113,6 +113,7 @@ public class PhotoUI implements PieListener,
     private ModuleSwitcher mSwitcher;
     private CameraControls mCameraControls;
     private AlertDialog mLocationDialog;
+    private AlertDialog mAntishakeDialog;
 
     private PieRenderer mPieRenderer;
     private ZoomRenderer mZoomRenderer;
@@ -652,6 +653,32 @@ public class PhotoUI implements PieListener,
         }
     }
 
+    public void showAntishakeDialog() {
+        mAntishakeDialog = new AlertDialog.Builder(mActivity)
+                .setTitle(R.string.antishake_quality_title)
+                .setMessage(R.string.antishake_quality_prompt)
+                .setNeutralButton(R.string.antishake_quality_ok,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int arg1) {
+                                dialog.cancel();
+                            }
+                        })
+                .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        mAntishakeDialog = null;
+                    }
+                })
+                .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        mActivity.setSystemBarsVisibility(false);
+                    }
+                })
+                .show();
+    }
+
     public void showLocationDialog() {
         mLocationDialog = new AlertDialog.Builder(mActivity)
                 .setTitle(R.string.remember_location_title)
@@ -1180,6 +1207,11 @@ public class PhotoUI implements PieListener,
             mLocationDialog.dismiss();
         }
         mLocationDialog = null;
+
+        if (mAntishakeDialog != null && mAntishakeDialog.isShowing()) {
+            mAntishakeDialog.dismiss();
+        }
+        mAntishakeDialog = null;
     }
 
     public void initDisplayChangeListener() {
