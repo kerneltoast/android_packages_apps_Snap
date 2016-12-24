@@ -2543,6 +2543,9 @@ public class VideoModule implements CameraModule,
         mFocusManager.setFocusTime(Integer.decode(
                 mPreferences.getString(CameraSettings.KEY_VIDEOCAMERA_FOCUS_TIME,
                 mActivity.getString(R.string.pref_camera_video_focustime_default))));
+
+        // TODO: Update this if HFR/HSR is fixed in the future
+        mParameters.set("preview-fps-range", "30000,30000");
     }
 
     @SuppressWarnings("deprecation")
