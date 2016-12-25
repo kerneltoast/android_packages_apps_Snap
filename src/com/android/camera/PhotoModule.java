@@ -1322,7 +1322,12 @@ public class PhotoModule
                 if (!mIsImageCaptureIntent) {
                     setCameraState(IDLE);
                 }
-                startFaceDetection();
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        startFaceDetection();
+                    }
+                });
             }
 
             mLastPhotoTakenWithRefocus = mRefocus;
@@ -1453,10 +1458,10 @@ public class PhotoModule
                     // latency. It's true that someone else could write to the SD card in
                     // the mean time and fill it, but that could have happened between the
                     // shutter press and saving the JPEG too.
-                    mActivity.updateStorageSpaceAndHint();
                     mHandler.post(new Runnable() {
                         @Override
                         public void run() {
+                            mActivity.updateStorageSpaceAndHint();
                             mUI.updateRemainingPhotos(--mRemainingPhotos);
                         }
                     });
