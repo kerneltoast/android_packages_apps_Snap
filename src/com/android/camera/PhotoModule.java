@@ -3105,6 +3105,10 @@ public class PhotoModule
             String iso = mPreferences.getString(CameraSettings.KEY_ISO, isoDefault);
             String antishakeDefault = mActivity.getString(R.string.pref_camera_antishake_default);
             String antishake = mPreferences.getString(CameraSettings.KEY_ANTISHAKE, antishakeDefault);
+            if (!Parameters.SCENE_MODE_AUTO.equals(mSceneMode)) {
+                iso = isoDefault;
+                antishake = antishakeDefault;
+            }
             if (antishake.equals("on") && mCameraState != INIT) {
                 if (!mAntishakeEnabledOnce) {
                     mAntishakeEnabledOnce = true;
@@ -3120,9 +3124,12 @@ public class PhotoModule
             }
         }
         // Set shutter speed parameter
+        String shutterSpeedDefault = mActivity.getString(R.string.pref_camera_shutter_speed_default);
         String shutterSpeed = mPreferences.getString(
-                CameraSettings.KEY_SHUTTER_SPEED,
-                mActivity.getString(R.string.pref_camera_shutter_speed_default));
+                CameraSettings.KEY_SHUTTER_SPEED, shutterSpeedDefault);
+        if (!Parameters.SCENE_MODE_AUTO.equals(mSceneMode)) {
+            shutterSpeed = shutterSpeedDefault;
+        }
         mParameters.set(CameraSettings.KEY_SNAPCAM_SHUTTER_SPEED, shutterSpeed);
         // Set color effect parameter.
         String colorEffect = mPreferences.getString(
