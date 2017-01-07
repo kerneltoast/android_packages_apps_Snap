@@ -960,7 +960,7 @@ public class CameraSettings {
             filterUnsupportedOptions(group, videoEffect, null);
         }
         if (cameraHdr != null && (!ApiHelper.HAS_CAMERA_HDR
-                || !CameraUtil.isCameraHdrSupported(mParameters) || mCameraId == 1)) {
+                || !CameraUtil.isCameraHdrSupported(mParameters))) {
             removePreference(group, cameraHdr.getKey());
         }
         int frontCameraId = CameraHolder.instance().getFrontCameraId();
