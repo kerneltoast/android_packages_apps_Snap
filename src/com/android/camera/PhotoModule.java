@@ -1773,6 +1773,12 @@ public class PhotoModule
         setCameraParameters(UPDATE_PARAM_PREFERENCE);
     }
 
+    @Override
+    public void setFocusMode(String mode) {
+        mParameters.setFocusMode(mode);
+        mCameraDevice.setParameters(mParameters);
+    }
+
     private Location getLocationAccordPictureFormat(String pictureFormat) {
         if (pictureFormat != null &&
                 PIXEL_FORMAT_JPEG.equalsIgnoreCase(pictureFormat)) {

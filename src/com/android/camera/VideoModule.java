@@ -566,6 +566,10 @@ public class VideoModule implements CameraModule,
         }
     }
 
+    @Override
+    public void setFocusMode(String mode) {
+    }
+
     // SingleTapListener
     // Preview area is touched. Take a picture.
     @Override
