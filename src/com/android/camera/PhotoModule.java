@@ -2058,7 +2058,9 @@ public class PhotoModule
             IconListPreference antishakePref =
                         (IconListPreference)mPreferenceGroup.findPreference(
                         CameraSettings.KEY_ANTISHAKE);
-            antishakePref.setValue("off");
+            if (antishakePref != null) {
+                antishakePref.setValue("off");
+            }
         }
     }
 

@@ -31,6 +31,7 @@ import android.hardware.Camera.Size;
 import android.media.CamcorderProfile;
 import android.util.Log;
 
+import com.android.camera.app.CameraApp;
 import com.android.camera.util.ApiHelper;
 import com.android.camera.util.CameraUtil;
 import com.android.camera.util.GcamHelper;
@@ -690,6 +691,7 @@ public class CameraSettings {
         ListPreference manualFocus = group.findPreference(KEY_MANUAL_FOCUS);
         ListPreference manualExposure = group.findPreference(KEY_MANUAL_EXPOSURE);
         ListPreference manualWB = group.findPreference(KEY_MANUAL_WB);
+        ListPreference antishake = group.findPreference(KEY_ANTISHAKE);
 
         // Remove leading ISO from iso-values
         boolean isoValuesUseNumbers = mContext.getResources().getBoolean(R.bool.iso_values_use_numbers);
@@ -864,6 +866,15 @@ public class CameraSettings {
                 "0,0.200,0.400,0.667,1.000,2.000,4.000,8.000,16.667,33.333,66.667,125.000,250.000,422.240";
             filterUnsupportedOptions(group, shutterSpeed, split(str));
         }
+
+        if (CameraApp.isOnePlus3T() && mCameraId == 1) {
+            if (antishake != null) {
+                removePreference(group, antishake.getKey());
+            }
+            if (shutterSpeed != null) {
+                removePreference(group, shutterSpeed.getKey());
+            }
+        }
     }
 
     private void initPreference(PreferenceGroup group) {
@@ -959,8 +970,9 @@ public class CameraSettings {
         if (videoEffect != null) {
             filterUnsupportedOptions(group, videoEffect, null);
         }
-        if (cameraHdr != null && (!ApiHelper.HAS_CAMERA_HDR
-                || !CameraUtil.isCameraHdrSupported(mParameters))) {
+        if (cameraHdr != null && ((!ApiHelper.HAS_CAMERA_HDR
+                || !CameraUtil.isCameraHdrSupported(mParameters))
+                || CameraApp.isOnePlus3T() && mCameraId == 1)) {
             removePreference(group, cameraHdr.getKey());
         }
         int frontCameraId = CameraHolder.instance().getFrontCameraId();

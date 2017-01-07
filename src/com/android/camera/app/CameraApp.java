@@ -19,6 +19,7 @@ package com.android.camera.app;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.SystemProperties;
 
 import com.android.camera.util.CameraUtil;
 import com.android.camera.util.UsageStatistics;
@@ -26,6 +27,7 @@ import com.android.camera.util.UsageStatistics;
 public class CameraApp extends Application {
 
     private static Application mApp = null;
+    private static String mModel = SystemProperties.get("ro.boot.project_name", null);
 
     @Override
     public void onCreate() {
@@ -38,5 +40,12 @@ public class CameraApp extends Application {
     public static Context getContext()
     {
         return mApp.getApplicationContext();
+    }
+
+    public static boolean isOnePlus3T() {
+        if (mModel != null && mModel.equals("15811")) {
+            return true;
+        }
+        return false;
     }
 }

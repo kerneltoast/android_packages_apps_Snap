@@ -21,6 +21,7 @@ import com.android.camera.app.CameraApp;
 
 import java.io.IOException;
 
+import android.app.Activity;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.SurfaceTexture;
@@ -110,6 +111,8 @@ class AndroidCameraManagerImpl implements CameraManager {
 
     // Used to retain a copy of Parameters for setting parameters.
     private Parameters mParamsToSet;
+
+    private boolean mForceLegacyOpen;
 
     AndroidCameraManagerImpl() {
         HandlerThread ht = new HandlerThread("Camera Handler Thread");
@@ -218,6 +221,10 @@ class AndroidCameraManagerImpl implements CameraManager {
                             boolean frontCameraOpenLegacy = context.getResources().getBoolean(R.bool.front_camera_open_legacy);
 
                             CameraInfo info = CameraHolder.instance().getCameraInfo()[cameraId];
+
+                            if (CameraApp.isOnePlus3T() && !mForceLegacyOpen) {
+                                frontCameraOpenLegacy = false;
+                            }
 
                             if ((info.facing == CameraInfo.CAMERA_FACING_BACK && backCameraOpenLegacy) || 
                                 (info.facing == CameraInfo.CAMERA_FACING_FRONT && frontCameraOpenLegacy)) {
@@ -413,7 +420,13 @@ class AndroidCameraManagerImpl implements CameraManager {
 
     @Override
     public CameraManager.CameraProxy cameraOpen(
-        Handler handler, int cameraId, CameraOpenErrorCallback callback) {
+        Handler handler, int cameraId, CameraOpenErrorCallback callback,
+        Activity activity) {
+        if (((CameraActivity)activity).getCurrentModule() instanceof VideoModule) {
+            mForceLegacyOpen = true;
+        } else {
+            mForceLegacyOpen = false;
+        }
         mCameraHandler.obtainMessage(OPEN_CAMERA, cameraId, 0,
                 CameraOpenErrorCallbackForward.getNewInstance(
                         handler, callback)).sendToTarget();

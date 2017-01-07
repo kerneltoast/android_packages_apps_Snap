@@ -19,6 +19,7 @@ package com.android.camera;
 
 import static com.android.camera.util.CameraUtil.Assert;
 
+import android.app.Activity;
 import android.content.Context;
 import android.hardware.Camera.CameraInfo;
 import android.hardware.Camera.Parameters;
@@ -194,7 +195,8 @@ public class CameraHolder {
 
     public synchronized CameraProxy open(
             Handler handler, int cameraId,
-            CameraManager.CameraOpenErrorCallback cb) {
+            CameraManager.CameraOpenErrorCallback cb,
+            Activity activity) {
 
         Context context = CameraApp.getContext();
 
@@ -215,7 +217,7 @@ public class CameraHolder {
             Log.v(TAG, "open camera " + cameraId);
             if (mMockCameraInfo == null) {
                 mCameraDevice = CameraManagerFactory
-                        .getAndroidCameraManager().cameraOpen(handler, cameraId, cb);
+                        .getAndroidCameraManager().cameraOpen(handler, cameraId, cb, activity);
             } else {
                 if (mMockCamera != null) {
                     mCameraDevice = mMockCamera[cameraId];
@@ -263,8 +265,9 @@ public class CameraHolder {
      * unavailable then return {@code null}.
      */
     public synchronized CameraProxy tryOpen(
-            Handler handler, int cameraId, CameraManager.CameraOpenErrorCallback cb) {
-            return (!mCameraOpened ? open(handler, cameraId, cb) : null);
+            Handler handler, int cameraId, CameraManager.CameraOpenErrorCallback cb,
+            Activity activity) {
+            return (!mCameraOpened ? open(handler, cameraId, cb, activity) : null);
     }
 
     public synchronized void release() {
