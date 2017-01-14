@@ -1008,6 +1008,12 @@ public class CameraSettings {
            }
         }
 
+        if (CameraApp.isOnePlus3T() && mCameraId == 1) {
+            if (sceneMode != null) {
+                removePreference(group, sceneMode.getKey());
+            }
+        }
+
         qcomInitPreferences(group);
     }
 
