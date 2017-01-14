@@ -499,8 +499,7 @@ public class FocusOverlayManager {
                 mFocusMode = mPreferences.getString(
                         CameraSettings.KEY_VIDEOCAMERA_FOCUS_MODE, null);
             } else {
-                mFocusMode = mPreferences.getString(
-                        CameraSettings.KEY_FOCUS_MODE, null);
+                mFocusMode = Parameters.FOCUS_MODE_CONTINUOUS_PICTURE;
             }
 
             // Try to find a supported focus mode from the default list.
