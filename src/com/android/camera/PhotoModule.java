@@ -2403,7 +2403,7 @@ public class PhotoModule
         mParameters = mCameraDevice.getParameters();
         mCameraPreviewParamsReady = true;
         mInitialParams = mParameters;
-        if (mFocusManager == null) initializeFocusManager();
+        initializeFocusManager();
         initializeCapabilities();
         mHandler.sendEmptyMessageDelayed(CAMERA_OPEN_DONE,100);
         return;
@@ -2577,23 +2577,15 @@ public class PhotoModule
      */
     private void initializeFocusManager() {
         // Create FocusManager object. startPreview needs it.
-        // if mFocusManager not null, reuse it
-        // otherwise create a new instance
-        if (mFocusManager != null) {
-            mFocusManager.removeMessages();
-        } else {
-            CameraInfo info = CameraHolder.instance().getCameraInfo()[mCameraId];
-            mMirror = (info.facing == CameraInfo.CAMERA_FACING_FRONT);
-            String[] defaultFocusModes = mActivity.getResources().getStringArray(
-                    R.array.pref_camera_focusmode_default_array);
-            synchronized (this){
-                if (mFocusManager == null) {
-                    mFocusManager = new FocusOverlayManager(mPreferences, defaultFocusModes,
-                            mInitialParams, this, mMirror,
-                            mActivity.getMainLooper(), mUI != null ? mUI.getFocusRing() : null,
-                            mActivity);
-                }
-            }
+        CameraInfo info = CameraHolder.instance().getCameraInfo()[mCameraId];
+        mMirror = (info.facing == CameraInfo.CAMERA_FACING_FRONT);
+        String[] defaultFocusModes = mActivity.getResources().getStringArray(
+                R.array.pref_camera_focusmode_default_array);
+        synchronized (this){
+            mFocusManager = new FocusOverlayManager(mPreferences, defaultFocusModes,
+                    mInitialParams, this, mMirror,
+                    mActivity.getMainLooper(), mUI != null ? mUI.getFocusRing() : null,
+                    mActivity);
         }
     }
 
@@ -2851,7 +2843,7 @@ public class PhotoModule
             mRestartPreview = false;
         }
 
-        if (mFocusManager == null) initializeFocusManager();
+        initializeFocusManager();
 
         if (!mSnapshotOnIdle) {
             mFocusManager.setAeAwbLock(false); // Unlock AE and AWB.
