@@ -738,9 +738,13 @@ public class PhotoModule
         // to something other than auto, so set the ISO to ISO3200 here and then
         // back to its original value in order to make sure exposure times are
         // correct.
+        // Also change the focus mode to Fixed then CAF to try and fix the random
+        // focus breakage.
         mParameters.set("iso", "ISO3200");
+        mParameters.set("focus-mode", "fixed");
         mCameraDevice.setParameters(mParameters);
         mParameters.set("iso", "auto");
+        mParameters.set("focus-mode", "continuous-picture");
         mCameraDevice.setParameters(mParameters);
 
         loadCameraPreferences();
