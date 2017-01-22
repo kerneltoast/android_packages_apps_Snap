@@ -691,7 +691,6 @@ public class PhotoModule
         }
         closeCamera();
         mUI.collapseCameraControls();
-        if (mFocusManager != null) mFocusManager.removeMessages();
 
         // Restart the camera and initialize the UI. From onCreate.
         mPreferences.setLocalId(mActivity, mCameraId);
@@ -707,10 +706,7 @@ public class PhotoModule
         mParameters = mCameraDevice.getParameters();
         mInitialParams = mParameters;
         initializeCapabilities();
-        CameraInfo info = CameraHolder.instance().getCameraInfo()[mCameraId];
-        mMirror = (info.facing == CameraInfo.CAMERA_FACING_FRONT);
-        mFocusManager.setMirror(mMirror);
-        mFocusManager.setParameters(mInitialParams);
+        initializeFocusManager();
         setupPreview();
 
         // reset zoom value index
@@ -2563,7 +2559,7 @@ public class PhotoModule
         mUI.onPause();
 
         mPendingSwitchCameraId = -1;
-        if (mFocusManager != null) mFocusManager.removeMessages();
+
         MediaSaveService s = mActivity.getMediaSaveService();
         if (s != null) {
             s.setListener(null);
@@ -2843,7 +2839,7 @@ public class PhotoModule
             mRestartPreview = false;
         }
 
-        initializeFocusManager();
+        if (mFocusManager == null) initializeFocusManager();
 
         if (!mSnapshotOnIdle) {
             mFocusManager.setAeAwbLock(false); // Unlock AE and AWB.
