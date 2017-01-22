@@ -734,6 +734,14 @@ public class PhotoModule
 
     // either open a new camera or switch cameras
     private void openCameraCommon() {
+        boolean useFocusHack;
+        String continuousAF = Parameters.FOCUS_MODE_CONTINUOUS_PICTURE;
+        String fixedFocus = Parameters.FOCUS_MODE_FIXED;
+        List<String> supportedFocusModes = mParameters.getSupportedFocusModes();
+
+        useFocusHack = CameraUtil.isSupported(continuousAF, supportedFocusModes) &&
+                        CameraUtil.isSupported(fixedFocus, supportedFocusModes);
+
         // Camera HAL erroneously halves auto exposure times until we set the ISO
         // to something other than auto, so set the ISO to ISO3200 here and then
         // back to its original value in order to make sure exposure times are
@@ -741,10 +749,15 @@ public class PhotoModule
         // Also change the focus mode to Fixed then CAF to try and fix the random
         // focus breakage.
         mParameters.set("iso", "ISO3200");
-        mParameters.set("focus-mode", "fixed");
+        if (useFocusHack) {
+            mParameters.setFocusMode(fixedFocus);
+        }
         mCameraDevice.setParameters(mParameters);
+
         mParameters.set("iso", "auto");
-        mParameters.set("focus-mode", "continuous-picture");
+        if (useFocusHack) {
+            mParameters.setFocusMode(continuousAF);
+        }
         mCameraDevice.setParameters(mParameters);
 
         loadCameraPreferences();
