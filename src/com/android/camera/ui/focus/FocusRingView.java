@@ -188,7 +188,7 @@ public class FocusRingView extends View implements Invalidator, FocusRing {
         mAutoFocusRing.setCenterY(center.y);
     }
 
-    private Point computeCenter() {
+    public Point computeCenter() {
         if (mPreviewSize != null && (mPreviewSize.width() * mPreviewSize.height() > 0.01f)) {
             Log.i(TAG, "Computing center via preview size.");
             return new Point((int) mPreviewSize.centerX(), (int) mPreviewSize.centerY());

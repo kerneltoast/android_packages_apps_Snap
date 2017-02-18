@@ -261,25 +261,45 @@ public class FocusOverlayManager {
         unlockAeAwbIfNeeded();
     }
 
+    private boolean doSnapAf() {
+        if (mHandler.hasMessages(RESET_TOUCH_FOCUS) || !mFocusAreaSupported) {
+            return false;
+        }
+
+        cancelAutoFocus();
+        resetMeteringAreas();
+
+        Point center = mFocusRing.computeCenter();
+
+        int x = center.x;
+        int y = center.y;
+
+        initializeFocusAreas(x, y);
+
+        mFocusRing.startActiveFocus();
+        mFocusRing.setFocusLocation(x, y);
+
+        // Set the focus area
+        mListener.setFocusParameters();
+        autoFocus();
+
+        return true;
+    }
+
     public void doSnap() {
         if (!mInitialized) return;
 
-        // If the user has half-pressed the shutter and focus is completed, we
-        // can take the photo right away. If the focus mode is infinity, we can
-        // also take the photo.
-        if (!needAutoFocusCall() || (mState == STATE_SUCCESS || mState == STATE_FAIL)) {
-            capture();
-        } else if (mState == STATE_FOCUSING) {
+        if (mState == STATE_FOCUSING) {
             // Half pressing the shutter (i.e. the focus button event) will
             // already have requested AF for us, so just request capture on
             // focus here.
             mState = STATE_FOCUSING_SNAP_ON_FINISH;
-        } else if (mState == STATE_IDLE) {
-            // We didn't do focus. This can happen if the user press focus key
-            // while the snapshot is still in progress. The user probably wants
-            // the next snapshot as soon as possible, so we just do a snapshot
-            // without focusing again.
-            capture();
+        } else {
+            if (doSnapAf()) {
+                mState = STATE_FOCUSING_SNAP_ON_FINISH;
+            } else {
+                capture();
+            }
         }
     }
 

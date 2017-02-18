@@ -16,6 +16,7 @@
 
 package com.android.camera.ui.focus;
 
+import android.graphics.Point;
 import android.graphics.RectF;
 
 /**
@@ -69,4 +70,9 @@ public interface FocusRing {
      * and preview space for values that are provided in preview space.
      */
     void configurePreviewDimensions(RectF previewArea);
+
+    /**
+     * Returns a Point containing the center of the preview space.
+     */
+    public Point computeCenter();
 }
