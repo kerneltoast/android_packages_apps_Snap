@@ -114,7 +114,6 @@ public class FocusOverlayManager {
         public void startFaceDetection();
         public void stopFaceDetection();
         public void setFocusParameters();
-        public void setFocusMode(String mode);
     }
 
     private class MainHandler extends Handler {
@@ -268,12 +267,8 @@ public class FocusOverlayManager {
         // If the user has half-pressed the shutter and focus is completed, we
         // can take the photo right away. If the focus mode is infinity, we can
         // also take the photo.
-        if (!needAutoFocusCall()) {
+        if (!needAutoFocusCall() || (mState == STATE_SUCCESS || mState == STATE_FAIL)) {
             capture();
-        } else if (needAutoFocusCall()) {
-            mListener.setFocusMode(Parameters.FOCUS_MODE_AUTO);
-            autoFocus();
-            mState = STATE_FOCUSING_SNAP_ON_FINISH;
         } else if (mState == STATE_FOCUSING) {
             // Half pressing the shutter (i.e. the focus button event) will
             // already have requested AF for us, so just request capture on
@@ -421,7 +416,9 @@ public class FocusOverlayManager {
         mFocusRing.startActiveFocus();
         mFocusRing.setFocusLocation(x, y);
 
-        mTouchAFRunning = true;
+        if (mZslEnabled) {
+            mTouchAFRunning = true;
+        }
 
         // Stop face detection because we want to specify focus and metering area.
         mListener.stopFaceDetection();
@@ -555,7 +552,9 @@ public class FocusOverlayManager {
             resetMeteringAreas();
         }
 
-        mTouchAFRunning = false;
+        if (mTouchAFRunning && mZslEnabled) {
+            mTouchAFRunning = false;
+        }
     }
 
     private Rect computeCameraRectFromPreviewCoordinates(int x, int y, int size) {
@@ -607,10 +606,8 @@ public class FocusOverlayManager {
     }
 
     private boolean needAutoFocusCall() {
-        return (getFocusMode(false).equals(Parameters.FOCUS_MODE_AUTO) ||
-            getFocusMode(false).equals(Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) &&
-            !(mZslEnabled && (mHandler.hasMessages(RESET_TOUCH_FOCUS))) &&
-            !mTouchAFRunning;
+        return getFocusMode(false).equals(Parameters.FOCUS_MODE_AUTO) &&
+            !(mZslEnabled && (mHandler.hasMessages(RESET_TOUCH_FOCUS)));
     }
 
     public void setZslEnable(boolean value) {
