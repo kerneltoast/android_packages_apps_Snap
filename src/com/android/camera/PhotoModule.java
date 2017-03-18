@@ -3794,6 +3794,16 @@ public class PhotoModule
         }
         //QCom related parameters updated here.
         qcomUpdateCameraParametersPreference();
+
+        String refocus = mPreferences.getString(CameraSettings.KEY_REFOCUS,
+                                mActivity.getString(R.string.pref_camera_refocus_default));
+        if (refocus != null) {
+            if (refocus.equals("on")) {
+                mFocusManager.setRefocusOnCapture(true);
+            } else {
+                mFocusManager.setRefocusOnCapture(false);
+            }
+        }
         return doGcamModeSwitch;
     }
 

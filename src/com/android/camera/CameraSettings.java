@@ -123,6 +123,7 @@ public class CameraSettings {
     public static final String KEY_FACE_RECOGNITION = "pref_camera_facerc_key";
     public static final String KEY_DIS = "pref_camera_dis_key";
     public static final String KEY_ANTISHAKE = "pref_camera_antishake_key";
+    public static final String KEY_REFOCUS = "pref_camera_refocus_key";
 
     public static final String KEY_LONGSHOT = "pref_camera_longshot_key";
 
@@ -692,6 +693,7 @@ public class CameraSettings {
         ListPreference manualExposure = group.findPreference(KEY_MANUAL_EXPOSURE);
         ListPreference manualWB = group.findPreference(KEY_MANUAL_WB);
         ListPreference antishake = group.findPreference(KEY_ANTISHAKE);
+        ListPreference refocus = group.findPreference(KEY_REFOCUS);
 
         // Remove leading ISO from iso-values
         boolean isoValuesUseNumbers = mContext.getResources().getBoolean(R.bool.iso_values_use_numbers);
@@ -873,6 +875,12 @@ public class CameraSettings {
             }
             if (shutterSpeed != null) {
                 removePreference(group, shutterSpeed.getKey());
+            }
+        }
+
+        if (mCameraId == 1) {
+            if (refocus != null) {
+                removePreference(group, refocus.getKey());
             }
         }
     }

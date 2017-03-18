@@ -436,6 +436,10 @@
     <string name="pref_camera_savepath_entry_0">Internal storage</string>
     <string name="pref_camera_savepath_entry_1">USB OTG drive</string>
 
+    <!-- Refocus on capture -->
+    <string name="pref_camera_refocus_title">Refocus on capture</string>
+    <string name="pref_camera_refocus_default" translatable="false">off</string>
+
     <!-- Misc -->
 
     <!-- The alias of CameraActivity for gesture operation -->
