@@ -536,15 +536,16 @@ public class CameraSettings {
     }
 
     public List<String> getSupportedAdvancedFeatures(Parameters params) {
-        String str = params.get(KEY_QC_SUPPORTED_AF_BRACKETING_MODES);
-        str += ',' + params.get(KEY_QC_SUPPORTED_CF_MODES);
-        str += ',' + params.get(KEY_QC_SUPPORTED_OZ_MODES);
-        str += ',' + params.get(KEY_QC_SUPPORTED_FSSR_MODES);
-        str += ',' + params.get(KEY_QC_SUPPORTED_TP_MODES);
-        str += ',' + params.get(KEY_QC_SUPPORTED_MTF_MODES);
-        str += ',' + mContext.getString(R.string.pref_camera_advanced_feature_default);
-        str += ',' + params.get(KEY_QC_SUPPORTED_RE_FOCUS_MODES);
-        return split(str);
+        //String str = params.get(KEY_QC_SUPPORTED_AF_BRACKETING_MODES);
+        //str += ',' + params.get(KEY_QC_SUPPORTED_CF_MODES);
+        //str += ',' + params.get(KEY_QC_SUPPORTED_OZ_MODES);
+        //str += ',' + params.get(KEY_QC_SUPPORTED_FSSR_MODES);
+        //str += ',' + params.get(KEY_QC_SUPPORTED_TP_MODES);
+        //str += ',' + params.get(KEY_QC_SUPPORTED_MTF_MODES);
+        //str += ',' + mContext.getString(R.string.pref_camera_advanced_feature_default);
+        //str += ',' + params.get(KEY_QC_SUPPORTED_RE_FOCUS_MODES);
+        //return split(str);
+        return null;
     }
 
     public static List<String> getSupportedAFBracketingModes(Parameters params) {
