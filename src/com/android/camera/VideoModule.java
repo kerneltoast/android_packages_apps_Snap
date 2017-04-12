@@ -63,7 +63,6 @@ import android.media.EncoderCapabilities.VideoEncoderCap;
 import com.android.camera.CameraManager.CameraAFCallback;
 import com.android.camera.CameraManager.CameraPictureCallback;
 import com.android.camera.CameraManager.CameraProxy;
-import com.android.camera.app.CameraApp;
 import com.android.camera.app.OrientationManager;
 import com.android.camera.exif.ExifInterface;
 import com.android.camera.ui.RotateTextToast;
@@ -215,8 +214,6 @@ public class VideoModule implements CameraModule,
 
     // The preview window is on focus
     private boolean mPreviewFocused = false;
-
-    private boolean mCameraSwitchedOnce;
 
     private final MediaSaveService.OnMediaSavedListener mOnVideoSavedListener =
             new MediaSaveService.OnMediaSavedListener() {
@@ -449,11 +446,7 @@ public class VideoModule implements CameraModule,
         mUI = new VideoUI(activity, this, root);
         mPreferences = new ComboPreferences(mActivity);
         CameraSettings.upgradeGlobalPreferences(mPreferences.getGlobal(), activity);
-        if (CameraApp.isOnePlus3T()) {
-           mCameraId = 0;
-        } else {
-            mCameraId = getPreferredCameraId(mPreferences);
-        }
+        mCameraId = getPreferredCameraId(mPreferences);
 
         mPreferences.setLocalId(mActivity, mCameraId);
         CameraSettings.upgradeLocalPreferences(mPreferences.getLocal());
@@ -654,10 +647,6 @@ public class VideoModule implements CameraModule,
 
             int[] largeIconIds = {R.drawable.ic_switch_front, R.drawable.ic_switch_back};
             switchIconPref.setLargeIconIds(largeIconIds);
-        }
-
-        if (CameraApp.isOnePlus3T() && !mCameraSwitchedOnce) {
-            CameraSettings.writePreferredCameraId(mPreferences, 0);
         }
     }
 
@@ -1127,20 +1116,12 @@ public class VideoModule implements CameraModule,
 
     @Override
     public void onResumeBeforeSuper() {
-        boolean isOP3T = CameraApp.isOnePlus3T();
         mPaused = false;
         mPreferences = new ComboPreferences(mActivity);
         CameraSettings.upgradeGlobalPreferences(mPreferences.getGlobal(), mActivity);
-        if (isOP3T) {
-           mCameraId = 0;
-        } else {
-            mCameraId = getPreferredCameraId(mPreferences);
-        }
+        mCameraId = getPreferredCameraId(mPreferences);
         mPreferences.setLocalId(mActivity, mCameraId);
         CameraSettings.upgradeLocalPreferences(mPreferences.getLocal());
-        if (isOP3T) {
-            CameraSettings.writePreferredCameraId(mPreferences, 0);
-        }
     }
 
     @Override
@@ -2747,7 +2728,6 @@ public class VideoModule implements CameraModule,
         }
 
         Log.d(TAG, "Start to switch camera.");
-        mCameraSwitchedOnce = true;
         mCameraId = mPendingSwitchCameraId;
         mPendingSwitchCameraId = -1;
         setCameraId(mCameraId);
