@@ -16,7 +16,6 @@
 
 package com.android.camera;
 
-import android.app.Activity;
 import android.annotation.TargetApi;
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
@@ -143,8 +142,7 @@ public interface CameraManager {
      * @return   An instance of {@link CameraProxy} on success. null on failure.
      */
     public CameraProxy cameraOpen(
-            Handler handler, int cameraId, CameraOpenErrorCallback callback,
-            Activity activity);
+            Handler handler, int cameraId, CameraOpenErrorCallback callback);
 
     /**
      * An interface that takes camera operation requests and post messages to the

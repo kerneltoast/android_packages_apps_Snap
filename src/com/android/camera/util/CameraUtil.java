@@ -378,7 +378,7 @@ public class CameraUtil {
             Handler handler, final CameraManager.CameraOpenErrorCallback cb) {
         try {
             throwIfCameraDisabled(activity);
-            return CameraHolder.instance().open(handler, cameraId, cb, activity);
+            return CameraHolder.instance().open(handler, cameraId, cb);
         } catch (CameraDisabledException ex) {
             handler.post(new Runnable() {
                 @Override
