@@ -264,11 +264,11 @@
 
     <!-- Sharpness -->
     <string name="pref_camera_sharpness_title">Sharpness</string>
-    <string name="pref_camera_sharpness_default" translatable="false">1</string>
+    <string name="pref_camera_sharpness_default" translatable="false">2</string>
 
     <string name="pref_camera_sharpness_entry_level0">Level 0</string>
-    <string name="pref_camera_sharpness_entry_level1">Level 1 (default)</string>
-    <string name="pref_camera_sharpness_entry_level2">Level 2</string>
+    <string name="pref_camera_sharpness_entry_level1">Level 1</string>
+    <string name="pref_camera_sharpness_entry_level2">Level 2 (default)</string>
     <string name="pref_camera_sharpness_entry_level3">Level 3</string>
     <string name="pref_camera_sharpness_entry_level4">Level 4</string>
     <string name="pref_camera_sharpness_entry_level5">Level 5</string>

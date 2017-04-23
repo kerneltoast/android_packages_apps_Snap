@@ -248,7 +248,7 @@ public class CameraSettings {
     public static final String VALUE_OFF = "off";
 
     public static final int CURRENT_VERSION = 6;
-    public static final int CURRENT_LOCAL_VERSION = 2;
+    public static final int CURRENT_LOCAL_VERSION = 3;
 
     private static final String TAG = "CameraSettings";
 
@@ -1152,6 +1152,14 @@ public class CameraSettings {
             // that of CamcorderProfile.java.
             editor.remove("pref_video_quality_key");
         }
+
+        if (version == 2) {
+            String sharpness = pref.getString(KEY_SHARPNESS, "2");
+            if (sharpness.equals("1")) {
+                editor.putString(KEY_SHARPNESS, "2");
+            }
+        }
+
         editor.putInt(KEY_LOCAL_VERSION, CURRENT_LOCAL_VERSION);
         editor.apply();
     }
