@@ -1989,8 +1989,16 @@ public class PhotoModule
             mUI.overrideSettings(CameraSettings.KEY_FLASH_MODE, flashMode);
         }
 
-        if(mCameraId != CameraHolder.instance().getFrontCameraId())
+        if(mCameraId != CameraHolder.instance().getFrontCameraId()) {
             CameraSettings.removePreferenceFromScreen(mPreferenceGroup, CameraSettings.KEY_SELFIE_FLASH);
+            CameraSettings.removePreferenceFromScreen(mPreferenceGroup, CameraSettings.KEY_SELFIE_MIRROR);
+        } else {
+            ListPreference prefSelfieMirror = mPreferenceGroup.findPreference(CameraSettings.KEY_SELFIE_MIRROR);
+            if(prefSelfieMirror != null && prefSelfieMirror.getValue() != null
+                    && prefSelfieMirror.getValue().equalsIgnoreCase("enable")) {
+                mUI.overrideSettings(CameraSettings.KEY_LONGSHOT, "off");
+            }
+        }
     }
 
     private void overrideCameraSettings(final String flashMode,
@@ -3450,6 +3458,15 @@ public class PhotoModule
 
         mLongShotMaxSnap = SystemProperties.getInt(PERSIST_LONGSHOT_MAX_SNAP, -1);
         mParameters.set("max-longshot-snap",mLongShotMaxSnap);
+
+        // Set selfie mirror
+        String selfieMirror = mPreferences.getString(
+                CameraSettings.KEY_SELFIE_MIRROR,
+                mActivity.getString(R.string.pref_camera_selfiemirror_default));
+        if (selfieMirror.equals("enable"))
+            mParameters.set("snapshot-picture-flip", "flip-h");
+        else
+            mParameters.set("snapshot-picture-flip", "off");
     }
 
     private int estimateJpegFileSize(final Size size, final String quality) {

@@ -83,6 +83,9 @@
   <string name="pref_selfie_flash_title">Selfie flaix</string>
   <!-- Red eye reduction -->
   <string name="pref_camera_redeyereduction_title">Reducció d\'ull vermells</string>
+  <string name="pref_camera_selfiemirror_title" translatable="true">Mirall Selfie</string>
+  <string name="pref_camera_selfiemirror_entry_enable">Activa</string>
+  <string name="pref_camera_selfiemirror_entry_disable">Desactiva</string>
   <!-- AE bracketing -->
   <string name="pref_camera_ae_bracket_hdr_title">Bracketing d\'exposició automàtica</string>
   <!-- High-framerate recording -->

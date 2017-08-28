@@ -83,6 +83,9 @@
   <string name="pref_selfie_flash_title">셀카 조명</string>
   <!-- Red eye reduction -->
   <string name="pref_camera_redeyereduction_title">적목현상 제거</string>
+  <string name="pref_camera_selfiemirror_title" translatable="true">셀카 뒤집기</string>
+  <string name="pref_camera_selfiemirror_entry_enable">사용</string>
+  <string name="pref_camera_selfiemirror_entry_disable">사용 안 함</string>
   <!-- AE bracketing -->
   <string name="pref_camera_ae_bracket_hdr_title">자동 노출 브래킷</string>
   <!-- High-framerate recording -->

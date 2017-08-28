@@ -83,6 +83,9 @@
   <string name="pref_selfie_flash_title">Lampu kilat swafoto</string>
   <!-- Red eye reduction -->
   <string name="pref_camera_redeyereduction_title">Penurunan mata merah</string>
+  <string name="pref_camera_selfiemirror_title" translatable="true">Cermin Selfie</string>
+  <string name="pref_camera_selfiemirror_entry_enable">Hidup</string>
+  <string name="pref_camera_selfiemirror_entry_disable">Mati</string>
   <!-- AE bracketing -->
   <string name="pref_camera_ae_bracket_hdr_title">Pendekapan Dedahan Automatik</string>
   <!-- High-framerate recording -->

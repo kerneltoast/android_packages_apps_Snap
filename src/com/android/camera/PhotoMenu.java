@@ -158,6 +158,7 @@ public class PhotoMenu extends MenuController
                 CameraSettings.KEY_FOCUS_TIME,
                 CameraSettings.KEY_SHUTTER_SPEED,
                 CameraSettings.KEY_REDEYE_REDUCTION,
+                CameraSettings.KEY_SELFIE_MIRROR,
                 CameraSettings.KEY_POWER_SHUTTER,
                 CameraSettings.KEY_MAX_BRIGHTNESS
         };
@@ -204,7 +205,8 @@ public class PhotoMenu extends MenuController
                 //CameraSettings.KEY_AE_BRACKET_HDR,
                 //CameraSettings.KEY_MANUAL_EXPOSURE,
                 //CameraSettings.KEY_MANUAL_WB,
-                //CameraSettings.KEY_MANUAL_FOCUS
+                //CameraSettings.KEY_MANUAL_FOCUS,
+                CameraSettings.KEY_SELFIE_MIRROR
         };
 
         initSwitchItem(CameraSettings.KEY_CAMERA_ID, mFrontBackSwitcher);

@@ -83,6 +83,9 @@
   <string name="pref_selfie_flash_title">Flash para selfie</string>
   <!-- Red eye reduction -->
   <string name="pref_camera_redeyereduction_title">Reducción de ojos rojos</string>
+  <string name="pref_camera_selfiemirror_title" translatable="true">Espejo Selfie</string>
+  <string name="pref_camera_selfiemirror_entry_enable">Activar</string>
+  <string name="pref_camera_selfiemirror_entry_disable">Desactivar</string>
   <!-- AE bracketing -->
   <string name="pref_camera_ae_bracket_hdr_title">Bracketing de exposición automática</string>
   <!-- High-framerate recording -->

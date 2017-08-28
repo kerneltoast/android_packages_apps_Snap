@@ -83,6 +83,9 @@
   <string name="pref_selfie_flash_title">Фронт. вспышка</string>
   <!-- Red eye reduction -->
   <string name="pref_camera_redeyereduction_title">Устр. эфф. красных глаз</string>
+  <string name="pref_camera_selfiemirror_title" translatable="true">Селфи-зеркало</string>
+  <string name="pref_camera_selfiemirror_entry_enable">Включить</string>
+  <string name="pref_camera_selfiemirror_entry_disable">Отключить</string>
   <!-- AE bracketing -->
   <string name="pref_camera_ae_bracket_hdr_title">Автобрекетинг</string>
   <!-- High-framerate recording -->

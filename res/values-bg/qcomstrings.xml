@@ -83,6 +83,9 @@
   <string name="pref_selfie_flash_title">Светкавица за селфи</string>
   <!-- Red eye reduction -->
   <string name="pref_camera_redeyereduction_title">Намаляване на ефекта червени очи</string>
+  <string name="pref_camera_selfiemirror_title" translatable="true">Селфи огледало</string>
+  <string name="pref_camera_selfiemirror_entry_enable">Вкл.</string>
+  <string name="pref_camera_selfiemirror_entry_disable">Изкл.</string>
   <!-- AE bracketing -->
   <string name="pref_camera_ae_bracket_hdr_title">AE кадриране</string>
   <!-- High-framerate recording -->

@@ -83,6 +83,9 @@
   <string name="pref_selfie_flash_title">自拍闪光灯</string>
   <!-- Red eye reduction -->
   <string name="pref_camera_redeyereduction_title">红眼消除</string>
+  <string name="pref_camera_selfiemirror_title" translatable="true">自拍镜</string>
+  <string name="pref_camera_selfiemirror_entry_enable">启用</string>
+  <string name="pref_camera_selfiemirror_entry_disable">禁用</string>
   <!-- AE bracketing -->
   <string name="pref_camera_ae_bracket_hdr_title">自动包围曝光</string>
   <!-- High-framerate recording -->
