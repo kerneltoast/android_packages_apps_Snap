@@ -87,6 +87,9 @@
   <string name="pref_camera_ae_bracket_hdr_title">Држање аутоматске експозиције</string>
   <!-- High-framerate recording -->
   <string name="pref_camera_hfr_title">Успорени снимак</string>
+  <string name="pref_camera_selfiemirror_title" translatable="true">Огледало за селфи</string>
+  <string name="pref_camera_selfiemirror_entry_enable">Омогући</string>
+  <string name="pref_camera_selfiemirror_entry_disable">Онемогући</string>
   <string name="pref_camera_hfr_entry_off">Искључено</string>
   <string name="pref_camera_hfr_entry_2x">Успорени снимак 60 FPS</string>
   <string name="pref_camera_hfr_entry_3x">Успорени снимак 90 FPS</string>

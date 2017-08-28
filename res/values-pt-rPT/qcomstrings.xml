@@ -84,6 +84,9 @@
   <!-- Red eye reduction -->
   <string name="pref_camera_redeyereduction_title">Redução de olhos vermelhos</string>
   <!-- AE bracketing -->
+  <string name="pref_camera_selfiemirror_title" translatable="true">Espelhar selfie</string>
+  <string name="pref_camera_selfiemirror_entry_enable">Ativar</string>
+  <string name="pref_camera_selfiemirror_entry_disable">Desativar</string>
   <string name="pref_camera_ae_bracket_hdr_title">Escalonamento de Exposição Automática (AEB)</string>
   <!-- High-framerate recording -->
   <string name="pref_camera_hfr_title">Câmara lenta</string>

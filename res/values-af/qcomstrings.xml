@@ -83,6 +83,9 @@
   <string name="pref_selfie_flash_title">Selfie Flits</string>
   <!-- Red eye reduction -->
   <string name="pref_camera_redeyereduction_title">Rooi oë vermindering</string>
+  <string name="pref_camera_selfiemirror_title" translatable="true">Selfie-spieël</string>
+  <string name="pref_camera_selfiemirror_entry_enable">Aktiveer</string>
+  <string name="pref_camera_selfiemirror_entry_disable">Deaktiveer</string>
   <!-- AE bracketing -->
   <string name="pref_camera_ae_bracket_hdr_title">Outo beligting afbakening</string>
   <!-- High-framerate recording -->

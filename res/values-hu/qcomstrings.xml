@@ -83,6 +83,9 @@
   <string name="pref_selfie_flash_title">Szelfi vaku</string>
   <!-- Red eye reduction -->
   <string name="pref_camera_redeyereduction_title">Vörösszem csökkentés</string>
+  <string name="pref_camera_selfiemirror_title" translatable="true">Tükör-szelfi</string>
+  <string name="pref_camera_selfiemirror_entry_enable">Engedélyezés</string>
+  <string name="pref_camera_selfiemirror_entry_disable">Letiltás</string>
   <!-- AE bracketing -->
   <string name="pref_camera_ae_bracket_hdr_title">Automatikus expozíció sorozat</string>
   <!-- High-framerate recording -->
