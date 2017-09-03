@@ -3464,7 +3464,7 @@ public class PhotoModule
                 CameraSettings.KEY_SELFIE_MIRROR,
                 mActivity.getString(R.string.pref_camera_selfiemirror_default));
         if (selfieMirror.equals("enable"))
-            mParameters.set("snapshot-picture-flip", "flip-h");
+            mParameters.set("snapshot-picture-flip", "flip-v");
         else
             mParameters.set("snapshot-picture-flip", "off");
     }
