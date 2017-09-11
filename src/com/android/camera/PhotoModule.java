@@ -940,29 +940,40 @@ public class PhotoModule
 
     @Override
     public void startFaceDetection() {
-        if (mCameraDevice == null) return;
-
-        if (mFaceDetectionEnabled == false
-               || mFaceDetectionStarted || mCameraState != IDLE) return;
-        if (mParameters.getMaxNumDetectedFaces() > 0) {
-            mFaceDetectionStarted = true;
-            CameraInfo info = CameraHolder.instance().getCameraInfo()[mCameraId];
-            mUI.onStartFaceDetection(mDisplayOrientation,
-                    (info.facing == CameraInfo.CAMERA_FACING_FRONT));
-            mCameraDevice.setFaceDetectionCallback(mHandler, mUI);
-            mCameraDevice.startFaceDetection();
+        if (mCameraDevice == null ||
+                !mFaceDetectionEnabled ||
+                mFaceDetectionStarted ||
+                mCameraState != IDLE ||
+                mParameters.getMaxNumDetectedFaces() <= 0) {
+            return;
         }
+
+        mFaceDetectionStarted = true;
+        CameraInfo info = CameraHolder.instance().getCameraInfo()[mCameraId];
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                mUI.onStartFaceDetection(mDisplayOrientation,
+                    (info.facing == CameraInfo.CAMERA_FACING_FRONT));
+            }
+        });
+        mCameraDevice.setFaceDetectionCallback(mHandler, mUI);
+        mCameraDevice.startFaceDetection();
     }
 
     @Override
     public void stopFaceDetection() {
-        if (mFaceDetectionEnabled == false || !mFaceDetectionStarted) return;
-        if (mParameters.getMaxNumDetectedFaces() > 0) {
-            mFaceDetectionStarted = false;
-            mCameraDevice.setFaceDetectionCallback(null, null);
-            mCameraDevice.stopFaceDetection();
-            mUI.onStopFaceDetection();
-        }
+        if (!mFaceDetectionStarted) return;
+
+        mFaceDetectionStarted = false;
+        mCameraDevice.setFaceDetectionCallback(null, null);
+        mCameraDevice.stopFaceDetection();
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                mUI.onStopFaceDetection();
+            }
+        });
     }
 
     // TODO: need to check cached background apps memory and longshot ION memory
@@ -1328,12 +1339,7 @@ public class PhotoModule
                 if (!mIsImageCaptureIntent) {
                     setCameraState(IDLE);
                 }
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        startFaceDetection();
-                    }
-                });
+                startFaceDetection();
             }
 
             mLastPhotoTakenWithRefocus = mRefocus;
