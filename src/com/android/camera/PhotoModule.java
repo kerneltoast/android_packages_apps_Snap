@@ -2768,7 +2768,8 @@ public class PhotoModule
                 CameraHolder.instance().release();
             }
 
-            mFaceDetectionStarted = false;
+            stopFaceDetection();
+            mFaceDetectionEnabled = false;
             mCameraDevice = null;
             setCameraState(PREVIEW_STOPPED);
             if (mFocusManager != null) {
