@@ -20,6 +20,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.view.KeyEvent;
 import android.view.View;
+import java.util.concurrent.CountDownLatch;
 
 public interface CameraModule {
 
@@ -71,5 +72,5 @@ public interface CameraModule {
 
     public void onSwitchSavePath();
 
-    public boolean delayAppExitToSaveImage();
+    public CountDownLatch getCaptureCountDownLatch();
 }

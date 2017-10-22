@@ -60,6 +60,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.TimeZone;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * Activity to handle panorama capturing.
@@ -954,8 +955,8 @@ public class WideAnglePanoramaModule
     }
 
     @Override
-    public boolean delayAppExitToSaveImage() {
-        return false;
+    public CountDownLatch getCaptureCountDownLatch() {
+        return null;
     }
 
     @Override

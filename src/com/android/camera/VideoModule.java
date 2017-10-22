@@ -75,6 +75,7 @@ import com.android.camera.PhotoModule;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.concurrent.CountDownLatch;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -1107,8 +1108,8 @@ public class VideoModule implements CameraModule,
     }
 
     @Override
-    public boolean delayAppExitToSaveImage() {
-        return false;
+    public CountDownLatch getCaptureCountDownLatch() {
+        return null;
     }
 
     @Override
