@@ -97,6 +97,7 @@ import java.io.OutputStream;
 import java.util.List;
 import java.util.Vector;
 import java.util.HashMap;
+import java.util.concurrent.CountDownLatch;
 import android.util.AttributeSet;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -315,7 +316,6 @@ public class PhotoModule
     private long mJpegPictureCallbackTime;
     private long mOnResumeTime;
     private byte[] mJpegImageData;
-    private boolean mWaitForJpegCallback;
 
     // These latency time are for the CameraLatency test.
     public long mAutoFocusTime;
@@ -334,6 +334,7 @@ public class PhotoModule
     private final Handler mHandler = new MainHandler();
     private MessageQueue.IdleHandler mIdleHandler = null;
     private HandlerThread mCaptureHandlerThread;
+    private CountDownLatch mCaptureCountDownLatch;
 
     private PreferenceGroup mPreferenceGroup;
 
@@ -829,8 +830,8 @@ public class PhotoModule
     }
 
     @Override
-    public boolean delayAppExitToSaveImage() {
-        return mWaitForJpegCallback;
+    public CountDownLatch getCaptureCountDownLatch() {
+        return mCaptureCountDownLatch;
     }
 
     private void keepMediaProviderInstance() {
@@ -1221,6 +1222,7 @@ public class PhotoModule
                 });
             }
             if (mPaused) {
+                mCaptureCountDownLatch.countDown();
                 return;
             }
             if (mIsImageCaptureIntent) {
@@ -1500,7 +1502,7 @@ public class PhotoModule
                 }
             }
 
-            mWaitForJpegCallback = false;
+            mCaptureCountDownLatch.countDown();
         }
     }
 
@@ -1625,7 +1627,6 @@ public class PhotoModule
         mCaptureStartTime = System.currentTimeMillis();
         mPostViewPictureCallbackTime = 0;
         mJpegImageData = null;
-        mWaitForJpegCallback = true;
 
         final boolean animateBefore = (mSceneMode == CameraUtil.SCENE_MODE_HDR);
         if(mHistogramEnabled) {
@@ -1718,6 +1719,7 @@ public class PhotoModule
             }
         } else {
             Handler handler = new Handler(mCaptureHandlerThread.getLooper());
+            mCaptureCountDownLatch = new CountDownLatch(1);
             mCameraDevice.enableShutterSound(!mRefocus);
             mCameraDevice.takePicture(handler,
                     new ShutterCallback(!animateBefore),

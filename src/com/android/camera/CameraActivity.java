@@ -118,6 +118,7 @@ import org.codeaurora.snapcam.R;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.CountDownLatch;
 
 import static com.android.camera.CameraManager.CameraOpenErrorCallback;
 import com.android.camera.SDCard;
@@ -1631,13 +1632,12 @@ public class CameraActivity extends Activity
     }
 
     private void waitForImageSave() {
-        long startTime = System.currentTimeMillis();
-        while (mCurrentModule.delayAppExitToSaveImage()) {
-            SystemClock.sleep(20);
-            long timeNow = System.currentTimeMillis();
-            if ((timeNow - startTime) > 5000) {
-                Log.e(TAG, "Couldn't save photo! Timed out after trying for 5000ms");
-                break;
+        CountDownLatch latch = mCurrentModule.getCaptureCountDownLatch();
+        if (latch != null) {
+            try {
+                latch.await();
+            } catch (InterruptedException e) {
+                Log.e(TAG, "Interrupted exception! Couldn't save photo.");
             }
         }
     }
