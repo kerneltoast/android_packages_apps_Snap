@@ -1668,6 +1668,24 @@ public class PhotoModule
         String pictureFormat = mParameters.get(KEY_PICTURE_FORMAT);
         Location loc = getLocationAccordPictureFormat(pictureFormat);
 
+        // Fix flipped JPEG when selfie mirror is enabled
+        if (mCameraId == CameraHolder.instance().getFrontCameraId()) {
+            ListPreference prefSelfieMirror = mPreferenceGroup.findPreference(CameraSettings.KEY_SELFIE_MIRROR);
+            if (prefSelfieMirror != null) {
+                String selfieValue = prefSelfieMirror.getValue();
+                if (selfieValue != null && selfieValue.equalsIgnoreCase("enable")) {
+                    switch (mJpegRotation) {
+                        case 0:
+                            mJpegRotation += 180;
+                            break;
+                        case 180:
+                            mJpegRotation -= 180;
+                            break;
+                    }
+                }
+            }
+        }
+
         synchronized (mCameraDevice) {
             mParameters.setRotation(mJpegRotation);
             CameraUtil.setGpsParameters(mParameters, loc);
