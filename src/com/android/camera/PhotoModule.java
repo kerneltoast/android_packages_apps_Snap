@@ -2054,7 +2054,7 @@ public class PhotoModule
                 mCameraId, CameraHolder.instance().getCameraInfo());
         mPreferenceGroup = settings.getPreferenceGroup(R.xml.camera_preferences);
 
-        int numOfCams = Camera.getNumberOfCameras();
+        int numOfCams = CameraHolder.instance().getNumberOfCameras();
         int backCamId = CameraHolder.instance().getBackCameraId();
         int frontCamId = CameraHolder.instance().getFrontCameraId();
         // We need to swap the list preference contents if back camera and front camera

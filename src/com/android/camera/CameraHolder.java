@@ -34,6 +34,7 @@ import com.android.camera.app.CameraApp;
 import com.android.camera.CameraManager.CameraProxy;
 
 import java.io.IOException;
+import java.lang.Math;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -166,7 +167,7 @@ public class CameraHolder {
             mNumberOfCameras = mMockCameraInfo.length;
             mInfo = mMockCameraInfo;
         } else {
-            mNumberOfCameras = android.hardware.Camera.getNumberOfCameras();
+            mNumberOfCameras = Math.min(2, android.hardware.Camera.getNumberOfCameras());
             mInfo = new CameraInfo[mNumberOfCameras];
             for (int i = 0; i < mNumberOfCameras; i++) {
                 mInfo[i] = new CameraInfo();

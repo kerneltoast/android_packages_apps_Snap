@@ -624,7 +624,7 @@ public class VideoModule implements CameraModule,
         mPreferenceGroup = filterPreferenceScreenByIntent(
                 settings.getPreferenceGroup(R.xml.video_preferences));
 
-        int numOfCams = Camera.getNumberOfCameras();
+        int numOfCams = CameraHolder.instance().getNumberOfCameras();
         int backCamId = CameraHolder.instance().getBackCameraId();
         int frontCamId = CameraHolder.instance().getFrontCameraId();
         // We need to swap the list preference contents if back camera and front camera
