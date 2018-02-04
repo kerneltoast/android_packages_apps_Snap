@@ -2238,6 +2238,15 @@ public class PhotoModule
         }
     }
 
+    private String getDefaultZslValue() {
+        if (mCameraId == CameraHolder.instance().getFrontCameraId()) {
+            return "off";
+        }
+
+        return mPreferences.getString(CameraSettings.KEY_ZSL,
+                    mActivity.getString(R.string.pref_camera_zsl_default));
+    }
+
     @Override
     public synchronized void onShutterButtonClick() {
         if ((mCameraDevice == null)
@@ -2300,8 +2309,7 @@ public class PhotoModule
             mUI.cancelCountDown();
         }
         if (seconds > 0) {
-            String zsl = mPreferences.getString(CameraSettings.KEY_ZSL,
-                    mActivity.getString(R.string.pref_camera_zsl_default));
+            String zsl = getDefaultZslValue();
             mUI.overrideSettings(CameraSettings.KEY_ZSL, zsl);
             mUI.startCountDown(seconds, playSound);
 
@@ -2919,8 +2927,7 @@ public class PhotoModule
     }
     private boolean needRestart() {
         mRestartPreview = false;
-        String zsl = mPreferences.getString(CameraSettings.KEY_ZSL,
-                                  mActivity.getString(R.string.pref_camera_zsl_default));
+        String zsl = getDefaultZslValue();
         String shutterSpeed = mPreferences.getString(
                             CameraSettings.KEY_SHUTTER_SPEED,
                             mActivity.getString(R.string.pref_camera_shutter_speed_default));
@@ -3358,8 +3365,7 @@ public class PhotoModule
             mParameters.setAntibanding(antiBanding);
         }
 
-        String zsl = mPreferences.getString(CameraSettings.KEY_ZSL,
-                                  mActivity.getString(R.string.pref_camera_zsl_default));
+        String zsl = getDefaultZslValue();
         String auto_hdr = mPreferences.getString(CameraSettings.KEY_AUTO_HDR,
                                        mActivity.getString(R.string.pref_camera_hdr_default));
         if (CameraUtil.isAutoHDRSupported(mParameters)) {
