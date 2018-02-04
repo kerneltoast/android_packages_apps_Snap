@@ -144,6 +144,7 @@ public class PhotoModule
     private static final int ON_PREVIEW_STARTED = 13;
     private static final int UPDATE_GESTURES_UI = 14;
     private static final int UNLOCK_CAM_SHUTTER = 15;
+    private static final int HIDE_PREVIEW_COVER = 16;
 
     // The subset of parameters we need to update in setCameraParameters().
     private static final int UPDATE_PARAM_INITIALIZE = 1;
@@ -509,6 +510,11 @@ public class PhotoModule
                     mUI.enableShutter(true);
                     break;
                 }
+
+                case HIDE_PREVIEW_COVER: {
+                    mUI.hidePreviewCover();
+                    break;
+                }
             }
         }
     }
@@ -712,6 +718,10 @@ public class PhotoModule
         // Start switch camera animation. Post a message because
         // onFrameAvailable from the old camera may already exist.
         mHandler.sendEmptyMessage(SWITCH_CAMERA_START_ANIMATION);
+
+        if (mCameraId == CameraHolder.instance().getFrontCameraId()) {
+            mHandler.sendEmptyMessageDelayed(HIDE_PREVIEW_COVER, 400);
+        }
     }
 
     protected void setCameraId(int cameraId) {
@@ -4468,7 +4478,12 @@ public class PhotoModule
         // We need to keep a preview frame for the animation before
         // releasing the camera. This will trigger onPreviewTextureCopied.
         //TODO: Need to animate the camera switch
-        switchCamera();
+        if (cameraId == CameraHolder.instance().getFrontCameraId()) {
+            mUI.showPreviewCover();
+            mHandler.sendEmptyMessageDelayed(SWITCH_CAMERA, 5);
+        } else {
+            switchCamera();
+        }
     }
 
     // Preview texture has been copied. Now camera can be released and the
