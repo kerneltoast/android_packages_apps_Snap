@@ -149,9 +149,11 @@ public class FocusOverlayManager {
         activity.getWindowManager().getDefaultDisplay().getRealSize(mDispSize);
         Context context = CameraApp.getContext();
         mBottomMargin =
-            context.getResources().getDimensionPixelSize(R.dimen.preview_bottom_margin);
+            context.getResources().getDimensionPixelSize(R.dimen.preview_bottom_margin) +
+            context.getResources().getDimensionPixelSize(R.dimen.preview_margin_fudge);
         mTopMargin =
-            context.getResources().getDimensionPixelSize(R.dimen.preview_top_margin);
+            context.getResources().getDimensionPixelSize(R.dimen.preview_top_margin) +
+            context.getResources().getDimensionPixelSize(R.dimen.preview_margin_fudge);
         setFocusRing(focusRing);
     }
 

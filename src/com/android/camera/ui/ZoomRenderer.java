@@ -84,9 +84,11 @@ public class ZoomRenderer extends OverlayRenderer
         mTextBounds = new Rect();
         setVisible(false);
         mBottomMargin =
-            ctx.getResources().getDimensionPixelSize(R.dimen.preview_bottom_margin);
+            ctx.getResources().getDimensionPixelSize(R.dimen.preview_bottom_margin) +
+            ctx.getResources().getDimensionPixelSize(R.dimen.preview_margin_fudge);
         mTopMargin =
-            ctx.getResources().getDimensionPixelSize(R.dimen.preview_top_margin);
+            ctx.getResources().getDimensionPixelSize(R.dimen.preview_top_margin) +
+            ctx.getResources().getDimensionPixelSize(R.dimen.preview_margin_fudge);
         mDispSize = new Point();
         Activity activity = (Activity) ctx;
         activity.getWindowManager().getDefaultDisplay().getRealSize(mDispSize);

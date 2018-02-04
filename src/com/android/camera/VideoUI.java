@@ -246,13 +246,13 @@ public class VideoUI implements PieRenderer.PieListener,
         Point size = new Point();
         mActivity.getWindowManager().getDefaultDisplay().getSize(size);
         mScreenRatio = CameraUtil.determineRatio(size.x, size.y);
-        if (mScreenRatio == CameraUtil.RATIO_16_9) {
-            int l = size.x > size.y ? size.x : size.y;
-            int tm = mActivity.getResources().getDimensionPixelSize(R.dimen.preview_top_margin);
-            int bm = mActivity.getResources().getDimensionPixelSize(R.dimen.preview_bottom_margin);
-            mTopMargin = l / 4 * tm / (tm + bm);
-            mBottomMargin = l / 4 - mTopMargin;
-        }
+        int l = size.x > size.y ? size.x : size.y;
+        int tm = mActivity.getResources().getDimensionPixelSize(R.dimen.preview_top_margin);
+        int bm = mActivity.getResources().getDimensionPixelSize(R.dimen.preview_bottom_margin);
+        mTopMargin = l / 4 * tm / (tm + bm);
+        mBottomMargin = l / 4 - mTopMargin;
+        mTopMargin += mActivity.getResources().getDimensionPixelSize(R.dimen.preview_margin_fudge);
+        mBottomMargin += mActivity.getResources().getDimensionPixelSize(R.dimen.preview_margin_fudge);
         mCameraControls.setMargins(mTopMargin, mBottomMargin);
         ((ViewGroup)mRootView).removeView(mRecordingTimeRect);
     }

@@ -319,6 +319,8 @@ public class PhotoUI implements PieListener,
         int bm = mActivity.getResources().getDimensionPixelSize(R.dimen.preview_bottom_margin);
         mTopMargin = l / 4 * tm / (tm + bm);
         mBottomMargin = l / 4 - mTopMargin;
+        mTopMargin += mActivity.getResources().getDimensionPixelSize(R.dimen.preview_margin_fudge);
+        mBottomMargin += mActivity.getResources().getDimensionPixelSize(R.dimen.preview_margin_fudge);
     }
 
     public void setDownFactor(int factor) {

@@ -169,9 +169,10 @@
     <dimen name="filter_mode_width">100dp</dimen>
     <dimen name="filter_mode_padding">10dp</dimen>
 
-    <dimen name="remaining_photos_margin">67dp</dimen>
+    <dimen name="remaining_photos_margin">79dp</dimen>
 
     <!-- Margins for 4:3 preview on 16:9 screen with 640dp height -->
     <dimen name="preview_top_margin">57dp</dimen>
     <dimen name="preview_bottom_margin">103dp</dimen>
+    <dimen name="preview_margin_fudge">12dp</dimen>
 </resources>
