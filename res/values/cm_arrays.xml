@@ -64,7 +64,8 @@
         <item>@string/pref_camera_shutter_speed_entry_4</item>
         <item>@string/pref_camera_shutter_speed_entry_8</item>
         <item>@string/pref_camera_shutter_speed_entry_16</item>
-        <item>@string/pref_camera_shutter_speed_entry_30</item>
+        <item>@string/pref_camera_shutter_speed_entry_32</item>
+        <item>@string/pref_camera_shutter_speed_entry_50</item>
     </array>
 
     <string-array name="pref_camera_shutter_speed_entryvalues" translatable="false">
@@ -81,13 +82,14 @@
         <item>66.667</item>
         <item>125.000</item>
         <item>250.000</item>
-        <item>422.240</item> <!-- 422.240 is the max for the front camera -->
+        <item>500.000</item>
         <item>1000.000</item>
         <item>2000.000</item>
         <item>4000.000</item>
         <item>8000.000</item>
         <item>16000.000</item>
-        <item>30231.203</item>
+        <item>32000.000</item>
+        <item>48369.980</item>
     </string-array>
 
     <!-- Default focus mode setting.-->
