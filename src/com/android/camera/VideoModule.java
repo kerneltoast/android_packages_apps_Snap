@@ -2302,12 +2302,12 @@ public class VideoModule implements CameraModule,
             mParameters.setColorEffect(colorEffect);
         }
 
-        String disMode;
-        if (is4KEnabled()) {
-            disMode = "disable";
-        } else {
-            disMode = "enable";
-        }
+        String disMode = "disable";
+        //if (is4KEnabled()) {
+        //    disMode = "disable";
+        //} else {
+        //    disMode = "enable";
+        //}
 
         Log.v(TAG, "DIS value =" + disMode);
 
