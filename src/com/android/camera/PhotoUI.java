@@ -307,7 +307,7 @@ public class PhotoUI implements PieListener,
         mPrevOrientationResize = false;
 
         Point size = new Point();
-        mActivity.getWindowManager().getDefaultDisplay().getRealSize(size);
+        mActivity.getWindowManager().getDefaultDisplay().getSize(size);
         mScreenRatio = CameraUtil.determineRatio(size.x, size.y);
         calculateMargins(size);
         mCameraControls.setMargins(mTopMargin, mBottomMargin);
