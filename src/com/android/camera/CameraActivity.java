@@ -239,8 +239,7 @@ public class CameraActivity extends Activity
     private LocalMediaObserver mLocalImagesObserver;
     private LocalMediaObserver mLocalVideosObserver;
 
-    private final int DEFAULT_SYSTEM_UI_VISIBILITY = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                                                   | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
+    private final int DEFAULT_SYSTEM_UI_VISIBILITY = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
 
     private boolean mPendingDeletion = false;
 
@@ -665,7 +664,6 @@ public class CameraActivity extends Activity
                 | (visible ? View.SYSTEM_UI_FLAG_VISIBLE :
                     View.SYSTEM_UI_FLAG_LOW_PROFILE
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         if (newSystemUIVisibility != currentSystemUIVisibility) {
             decorView.setSystemUiVisibility(newSystemUIVisibility);
