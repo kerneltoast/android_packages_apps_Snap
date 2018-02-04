@@ -91,7 +91,7 @@ public class ZoomRenderer extends OverlayRenderer
             ctx.getResources().getDimensionPixelSize(R.dimen.preview_margin_fudge);
         mDispSize = new Point();
         Activity activity = (Activity) ctx;
-        activity.getWindowManager().getDefaultDisplay().getRealSize(mDispSize);
+        activity.getWindowManager().getDefaultDisplay().getSize(mDispSize);
     }
 
     // set from module

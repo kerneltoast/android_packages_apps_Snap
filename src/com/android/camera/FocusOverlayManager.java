@@ -146,7 +146,7 @@ public class FocusOverlayManager {
         mListener = listener;
         setMirror(mirror);
         mDispSize = new Point();
-        activity.getWindowManager().getDefaultDisplay().getRealSize(mDispSize);
+        activity.getWindowManager().getDefaultDisplay().getSize(mDispSize);
         Context context = CameraApp.getContext();
         mBottomMargin =
             context.getResources().getDimensionPixelSize(R.dimen.preview_bottom_margin) +
