@@ -31,7 +31,6 @@ import android.hardware.Camera.Size;
 import android.media.CamcorderProfile;
 import android.util.Log;
 
-import com.android.camera.app.CameraApp;
 import com.android.camera.util.ApiHelper;
 import com.android.camera.util.CameraUtil;
 import com.android.camera.util.GcamHelper;
@@ -249,7 +248,7 @@ public class CameraSettings {
     public static final String VALUE_OFF = "off";
 
     public static final int CURRENT_VERSION = 6;
-    public static final int CURRENT_LOCAL_VERSION = 3;
+    public static final int CURRENT_LOCAL_VERSION = 2;
 
     private static final String TAG = "CameraSettings";
 
@@ -864,25 +863,9 @@ public class CameraSettings {
                     manualExposure, getSupportedManualExposureModes(mParameters));
         }
 
-        // TODO: Anything is better than this
-        if (shutterSpeed != null && mCameraId == 1) {
-            String str =
-                "0,0.200,0.400,0.667,1.000,2.000,4.000,8.000,16.667,33.333,66.667,125.000,250.000,422.240";
-            filterUnsupportedOptions(group, shutterSpeed, split(str));
-        }
-
-        if (CameraApp.isOnePlus3T() && mCameraId == 1) {
-            if (antishake != null) {
-                removePreference(group, antishake.getKey());
-            }
+        if (mCameraId == 1) {
             if (shutterSpeed != null) {
                 removePreference(group, shutterSpeed.getKey());
-            }
-        }
-
-        if (mCameraId == 1) {
-            if (refocus != null) {
-                removePreference(group, refocus.getKey());
             }
         }
     }
@@ -980,9 +963,9 @@ public class CameraSettings {
         if (videoEffect != null) {
             filterUnsupportedOptions(group, videoEffect, null);
         }
-        if (cameraHdr != null && ((!ApiHelper.HAS_CAMERA_HDR
-                || !CameraUtil.isCameraHdrSupported(mParameters))
-                || CameraApp.isOnePlus3T() && mCameraId == 1)) {
+        if (cameraHdr != null && (!ApiHelper.HAS_CAMERA_HDR
+                || !CameraUtil.isCameraHdrSupported(mParameters)
+                || mCameraId == 1)) {
             removePreference(group, cameraHdr.getKey());
         }
         int frontCameraId = CameraHolder.instance().getFrontCameraId();
@@ -1018,7 +1001,7 @@ public class CameraSettings {
            }
         }
 
-        if (CameraApp.isOnePlus3T() && mCameraId == 1) {
+        if (mCameraId == 1) {
             if (sceneMode != null) {
                 removePreference(group, sceneMode.getKey());
             }
@@ -1153,14 +1136,6 @@ public class CameraSettings {
             // that of CamcorderProfile.java.
             editor.remove("pref_video_quality_key");
         }
-
-        if (version == 2) {
-            String sharpness = pref.getString(KEY_SHARPNESS, "2");
-            if (sharpness.equals("1")) {
-                editor.putString(KEY_SHARPNESS, "2");
-            }
-        }
-
         editor.putInt(KEY_LOCAL_VERSION, CURRENT_LOCAL_VERSION);
         editor.apply();
     }
