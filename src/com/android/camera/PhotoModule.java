@@ -2944,9 +2944,11 @@ public class PhotoModule
         String aeBracketing = mPreferences.getString(
                             CameraSettings.KEY_AE_BRACKET_HDR,
                             mActivity.getString(R.string.pref_camera_ae_bracket_hdr_default));
+        String isoMode = mPreferences.getString(CameraSettings.KEY_ISO, "auto");
         if (!shutterSpeed.equals("0") ||
             aeBracketing.equals("AE-Bracket") ||
-            CameraUtil.SCENE_MODE_HDR.equals(mSceneMode)) {
+            CameraUtil.SCENE_MODE_HDR.equals(mSceneMode) ||
+            !isoMode.equals("auto")) {
             zsl = "off";
         }
         if(zsl.equals("on") && mSnapshotMode != CameraInfo.CAMERA_SUPPORT_MODE_ZSL
@@ -3375,7 +3377,7 @@ public class PhotoModule
             mParameters.setAntibanding(antiBanding);
         }
 
-        String zsl = getDefaultZslValue();
+        String zsl = getDefaultZslValue();//saru2
         String auto_hdr = mPreferences.getString(CameraSettings.KEY_AUTO_HDR,
                                        mActivity.getString(R.string.pref_camera_hdr_default));
         if (CameraUtil.isAutoHDRSupported(mParameters)) {
@@ -3386,9 +3388,11 @@ public class PhotoModule
             }
         }
         // Disable ZSL for manual shutter speed and HDR
+        String isoMode = mPreferences.getString(CameraSettings.KEY_ISO, "auto");
         if (!shutterSpeed.equals("0") ||
             aeBracketing.equals("AE-Bracket") ||
-            CameraUtil.SCENE_MODE_HDR.equals(mSceneMode)) {
+            CameraUtil.SCENE_MODE_HDR.equals(mSceneMode) ||
+            !isoMode.equals("auto")) {
             zsl = "off";
         }
         mParameters.setZSLMode(zsl);
